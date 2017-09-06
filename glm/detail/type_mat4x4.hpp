@@ -47,29 +47,35 @@ namespace glm
 		// -- Operations --
 		template<typename T>
 		GLM_FUNC_DECL tmat4x4<T> Rotate(const T& angleInDegrees, const T& x, const T& y, const T& z) {
-			*this =  glm::rotate(*this, angleInDegrees, glm::vec3(x, y, z));
+			*this =  glm::rotate(*this, glm::radians(angleInDegrees), glm::vec3(x, y, z));
 			return *this;			
 		}
 
 		template<typename T>
-		GLM_FUNC_DECL tmat4x4<T> Rotate(const T& angle, glm::vec3 const & v) {
-			*this = glm::rotate(*this, angle, v);
+		GLM_FUNC_DECL tmat4x4<T> Rotate(const T& angleInDegrees, glm::vec3 const & v) {
+			*this = glm::rotate(*this, glm::radians(angleInDegrees), v);
 			return *this;
 		}
 
 		template<typename T>
 		GLM_FUNC_DECL tmat4x4<T> Rotated(const T& angleInDegrees, const T& x, const T& y, const T& z) {
-			return glm::rotate(*this, angleInDegrees, glm::vec3(x, y, z));
+			return glm::rotate(*this, glm::radians(angleInDegrees), glm::vec3(x, y, z));
 		}
 
 		template<typename T>
-		GLM_FUNC_DECL tmat4x4<T> Rotated(const T& angle, glm::vec3 const & v) {
-			return glm::rotate(*this, angle, v);
+		GLM_FUNC_DECL tmat4x4<T> Rotated(const T& angleInDegrees, glm::vec3 const & v) {
+			return glm::rotate(*this, glm::radians(angleInDegrees), v);
 		}
 
 		template<typename T>
 		GLM_FUNC_DECL tmat4x4<T> Scale(const T& x, const T& y, const T& z) {
 			*this = glm::scale(*this, glm::vec3(x, y, z));
+			return *this;
+		}
+
+		template<typename T>
+		GLM_FUNC_DECL tmat4x4<T> Scale(const T& value) {
+			*this = glm::scale(*this, glm::vec3(value, value, value));
 			return *this;
 		}
 
@@ -84,6 +90,10 @@ namespace glm
 			return glm::scale(*this, glm::vec3(x, y, z));
 		}
 
+		template<typename T>
+		GLM_FUNC_DECL tmat4x4<T> Scaled(const T& value) {
+			return glm::scale(*this, glm::vec3(value, value, value));
+		}
 		
 		GLM_FUNC_DECL tmat4x4<float> Scaled(glm::vec3 const & v) {
 			return glm::scale(*this,  v);
